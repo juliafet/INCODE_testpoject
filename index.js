@@ -1,6 +1,8 @@
 const expres = require('express')
+require('dotenv').config()
 const ejs = require('ejs')
 const morgan = require('morgan')
+const bcrypt
 
 const app = express()
 

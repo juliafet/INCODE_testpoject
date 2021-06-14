@@ -7,12 +7,14 @@
     "create-database": "psql -h localhost -f sql/create-database.sql",
     "create-tables": "psql -h localhost -d project_4 -f sql/create-tables.sql",
     "seed-tables": "psql -h localhost -d project_4 -f sql/seed-tables.sql",
+    "dev": "nodemon -r dotenv/config index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
