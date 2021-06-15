@@ -9,7 +9,7 @@ const pgPort = process.env.PG_PORT || 5432
 
 
 //postgres setup
-const connection = `postgres://${process.env.PG_USER}:${processor.env.PG_PASSWORD}@${host}:${pgPort}/${database}`
+const connection = `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${host}:${pgPort}/${database}`
 
 const db = pgp(connection)
 
