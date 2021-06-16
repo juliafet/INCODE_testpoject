@@ -4,15 +4,15 @@ const db = require('../database')
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const{ redirectToHome } = require('../middleware')
 
-
-router.get('/', (req, res) => {
+router.get('/', redirectToHome, (req, res) => {
     res.render('pages/login', {
         message: req.query.massage
     })
 })
 
-router.post('/', (req, res) => {
+router.post('/', redirectToHome, (req, res) => {
     // has  the user enteres both email and password?
     if (req.body.email === '' || req.body.password === '') {
         return req.reirect('/login?message=Please%20insert%20both%email%20')
