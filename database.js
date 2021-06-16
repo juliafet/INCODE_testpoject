@@ -2,7 +2,7 @@ const pgp = require('pg-promise')()
 
 const user = 'ulka'
 const password = '12345678'
-const database = 'ptoject_4'
+const database = 'create-database'
 
 const host = process.env.PG_HOST || 'localhost'
 const pgPort = process.env.PG_PORT || 5432

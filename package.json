@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "create-database": "psql -h localhost -f sql/create-database.sql",
-    "create-tables": "psql -h localhost -d project_4 -f sql/create-tables.sql",
-    "seed-tables": "psql -h localhost -d project_4 -f sql/seed-tables.sql",
+    "create-database": "psql -h localhost -d project_mrcoffee -f sql/create-database.sql",
+    "create-tables": "psql -h localhost -d project_mrcoffee -f sql/create-tables.sql",
+    "seed-tables": "psql -h localhost -d project_mrcoffee -f sql/seed-tables.sql",
     "dev": "nodemon -r dotenv/config index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +18,7 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.2",
     "layouts": "^3.0.2",
     "morgan": "^1.10.0",
     "pg": "^8.6.0",
