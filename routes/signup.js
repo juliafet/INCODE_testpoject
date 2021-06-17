@@ -7,14 +7,16 @@ const saltRounds = 10;
 
 // middleware for users that are already logged in
 const loggedInMessage = (req, res, next) => {
-    if (res.session.userId) {
+    if (req.session.userId) {
         res.render('pages/signup', {
             message: req.query.message ? req.query.message : "You are already logged in, are you sure you want to sign up?"
         })
+    } else {
+        next()
     }
 }
 
-router.get('/', (req, res) => {
+router.get('/', loggedInMessage, (req, res) => {
     res.render('pages/signup', {
         message: req.query.message
     })
@@ -33,35 +35,43 @@ router.post('/', (req, res) => {
         return res.redirect("/signup?message=Passwords%20don't%20match.")
     }
     // check whether email already exists in the database
-    db.oneOrNone('SELECT * FROM users WHERE email = $1;', [req.body.email])
+    db.oneOrNone('SELECT * FROM users WHERE email = $1;', [req.body.email.toLowerCase()])
     .then((existingUser) => {
         if (existingUser) {
-            res.redirect("/signup?message=Passwords%20don't%20match.")
+            // email already exists
+            res.redirect("/signup?message=User%20already%20exists.")
         } else {
+            // put data into database
             const newUser = {
-                name: req.body.name,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
                 email: req.body.email.toLowerCase(),
                 password: bcrypt.hashSync(req.body.password, saltRounds)
             }
             
-            db.none('INSERT INTO users(email, name, password) VALUES ($1, $2, $3);',
-            [newUser.email, newUser.name, newUser.password])
+            db.none('INSERT INTO users(email, firstname, lastname, password) VALUES ($1, $2, $3, $4);',
+            [newUser.email, newUser.firstname, newUser.lastname, newUser.password])
             .then(() => {
-                res.redirect('/signup?success=true')
+                console.log(newUser)
+                res.redirect('/signup?success?message=Signup%20was%20successful.')
             })
             .catch((err) => {
+                // error if user hasn't been inserted into the db
                 const message = err.message.replace(/ /g, '%20')
                 res.redirect(`/signup?message=${message}`)
             })
         }
     })
     .catch((err) => {
+        // failed to check whether user email exists or not
         res.send(err.message)
     })
 })
 
 router.get("/success", (req, res) => {
-    res.render('/signup/signup-success')
+    res.render('/pages/signup-success', {
+        message: req.query.message
+    })
 })
 
 module.exports = router

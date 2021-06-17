@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "create-database": "psql -h localhost -d project_mrcoffee -f sql/create-database.sql",
+    "create-database": "psql -h localhost -f sql/create-database.sql",
     "create-tables": "psql -h localhost -d project_mrcoffee -f sql/create-tables.sql",
     "seed-tables": "psql -h localhost -d project_mrcoffee -f sql/seed-tables.sql",
     "dev": "nodemon -r dotenv/config index.js",

@@ -2,9 +2,12 @@
     <h1>LOG IN:</h1>
     <form action="/login" method="POST">
         <label for="email">EMAIL: *</label><br>
-        <input name="email" type="email" id="email" required><br>
+        <input name="email" type="email" id="email"><br>
         <label for="lname">PASSWORD: *</label><br>
-        <input type="password" id="password" name="password" required><br>
+        <input type="password" id="password" name="password"><br>
+        <% if (message) { %>
+        <p style="color:red;"><% message %></p>
+        <% } %>
         <div class="sub-button">
             <input id="submit" class="pop_up" type="submit" value="SUBMIT">
         </div>

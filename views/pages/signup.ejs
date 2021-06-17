@@ -1,8 +1,10 @@
 <section id="form_container">
     <h1>SIGN UP:</h1>
     <form action="/signup" method="POST">
-        <label for="name">NAME: *</label><br>
-        <input name="name" type="name" id="name" required><br>
+        <label for="firstname">First name: *</label><br>
+        <input name="firstname" type="text" id="firstname" required><br>
+        <label for="lastname">Last name: *</label><br>
+        <input name="lastname" type="text" id="lastname" required><br>
         <label for="email">EMAIL: *</label><br>
         <input name="email" type="email" id="email" required><br>
         <label for="password">PASSWORD: *</label><br>
@@ -13,7 +15,7 @@
             <p style="color: red;"><%= message %></p>
         <% } %>
         <div class="sub-button">
-            <input id="submit" class="pop_up" type="submit" value="SIGN UP">
+            <input id="submit" class="pop_up" type="submit" value="SIGNUP">
         </div>
     </form>
 </section>

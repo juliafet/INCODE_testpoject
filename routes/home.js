@@ -1,10 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const db = require('../database')
-const { redirectToHome } = require('../middleware')
+const { redirectToLogin } = require('../middleware')
 
-router.get('/', redirectToHome, (req,res) => {
+router.get('/', redirectToLogin, (req,res) => {
     res.render('pages/home')
 })
 
-router.post()
+module.exports = router
